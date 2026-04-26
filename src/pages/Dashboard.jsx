@@ -1,10 +1,12 @@
-import Navbar from "../components/Dashboard/Navbar/Navbar";
+import Footer from "../components/Dashborad/Footer/Footer";
+import Navbar from "../components/Dashborad/Navbar/Navbar";
 
 function Dashboard() {
   return (
     <>
-      <Navbar />
-      <h1>Test Content</h1>
+      <Navbar adminName="mohamed" />
+      <h1>Test Dashboard</h1>
+      <Footer />
     </>
   );
 }

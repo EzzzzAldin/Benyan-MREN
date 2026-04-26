@@ -2,20 +2,20 @@
 
 :root {
   --main-color: #00315e;
-  --white-color: #fff;
+  --whit-color: #fff;
   --second-color: #4fb7b3;
-  --third-color: #6ec1e4;
+  --hover-color: #6ec1e4;
   --text-color: #000;
 }
 
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
   font-family: "Cairo", sans-serif;
 }
 
 body {
-  background-color: var(--second-color);
+  background-color: var(--whit-color);
   color: var(--text-color);
 }
