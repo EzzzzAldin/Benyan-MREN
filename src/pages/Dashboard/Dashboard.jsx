@@ -5,6 +5,8 @@ import Sidebar from "../../components/Dashborad/Sidebar/Sidebar";
 import HomeDashboard from "./HomeDashboard";
 import Users from "./Users";
 import Projects from "./Projects";
+import TableDashboard from "../../components/ui/TableDashboard/TableDashboard";
+import FormDashboard from "../../components/ui/FormDashboard/FormDashboard";
 
 function Dashboard() {
   return (
@@ -15,7 +17,14 @@ function Dashboard() {
         <main className="flex-grow-1">
           <Routes>
             <Route path="/" element={<HomeDashboard />} />
-            <Route path="/users" element={<Users />} />
+
+            <Route path="/users" element={<Users />}>
+              {/* First Child */}
+              <Route index element={<TableDashboard />} />
+              {/* Second Child */}
+              <Route path="add" element={<FormDashboard />} />
+            </Route>
+
             <Route path="/projects" element={<Projects />} />
           </Routes>
         </main>

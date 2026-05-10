@@ -1,22 +1,22 @@
+import CardStatus from "../../ui/CardStatus/CardStatus";
 function Status() {
   return (
     <section className="py-4">
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-3">
-            <div className="cardStatus">
-              <div className="icon">
-                <i className="fa-solid fa-building"></i>
-              </div>
-              <div className="info">
-                <span className="Counter">120</span>
-                <span className="title">Projects</span>
-              </div>
-            </div>
+            <CardStatus counter="120" title="Projects" />
           </div>
-          <div className="col-12 col-md-3">test</div>
-          <div className="col-12 col-md-3">test</div>
-          <div className="col-12 col-md-3">test</div>
+
+          <div className="col-12 col-md-3">
+            <CardStatus counter="150" title="Users" />
+          </div>
+          <div className="col-12 col-md-3">
+            <CardStatus counter="200" title="Developers" />
+          </div>
+          <div className="col-12 col-md-3">
+            <CardStatus counter="50" title="Blogs" />
+          </div>
         </div>
       </div>
     </section>

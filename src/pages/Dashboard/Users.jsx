@@ -1,9 +1,9 @@
+import { Outlet } from "react-router-dom";
 function Users() {
   return (
-    <>
-      {" "}
-      <h1>Users Page</h1>
-    </>
+    <section className="py-4">
+      <Outlet />
+    </section>
   );
 }
 
