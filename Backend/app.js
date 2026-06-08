@@ -9,7 +9,7 @@ app.use(express.json());
 // connection DB
 // Simple Logger
 if (process.env.NODE_ENV === "dev") {
-  app.use(morgan("dev"));
+  app.use(morgan("combined"));
 }
 // Test Route
 app.get("/test", (req, res) => {

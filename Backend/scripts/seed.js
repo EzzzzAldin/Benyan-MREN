@@ -1,37 +1,35 @@
-// require dotenv
+// require env
 require("dotenv").config();
 // require mongoose
 const mongoose = require("mongoose");
-// Admin Model
+// require Model
 const Admin = require("../models/Admin");
-// Create New Function(Server)
+// Create Function(server)
 const seedSuperAdmin = async () => {
   try {
-    // DB Connected
+    // connection DB
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("DB Is Connected");
-    // exist Admin
+    console.log("DB IS Connected");
+    // Check Admin
     const existAdmin = await Admin.findOne({
-      email: process.env.EMAIL_ADMIN,
+      email: process.env.ADMIN_EMAIL,
     });
-    if (existAdmin) return console.log("Already Found Admin");
-    // Create New Admin
+    if (existAdmin) return console.log("Admin Already Exist");
+    // create Admin
     const newAdmin = {
-      username: "Super Admin",
-      email: process.env.EMAIL_ADMIN,
-      password: process.env.PASSWORD_ADMIN,
+      username: "super admin",
+      email: process.env.ADMIN_EMAIL,
+      password: process.env.ADMIN_PASSWORD,
     };
-
     const admin = await Admin.create(newAdmin);
-
     console.log(admin);
   } catch (error) {
-    console.log(error);
+    console.log("error");
   } finally {
     await mongoose.connection.close();
     console.log("DB Is Closed");
     process.exit(0);
   }
 };
-// Run Function
+// call
 seedSuperAdmin();
