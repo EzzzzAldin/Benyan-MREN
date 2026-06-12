@@ -3,9 +3,8 @@ require("dotenv").config();
 // express
 const express = require("express");
 const app = express();
-// Step 0
 const http = require("http");
-const server = http.createServer(app);
+const realServer = http.createServer(app);
 
 const morgan = require("morgan");
 // middleware json
@@ -31,21 +30,17 @@ app.use("/api/dashboard", adminRoutes);
 app.use("/api/dashboard/users", userRoutes);
 app.use("/api/users", userAuthRoutes);
 
-// Init Socket Server => 1
 const { Server } = require("socket.io");
-const io = new Server(server, {
-  // Configuration Server Node
+const io = new Server(realServer, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
   },
 });
 
-require("./sockets/chat.socket")(io);
-
 // Port
 const port = process.env.PORT || 3000;
 // Run Server
-server.listen(port, () => {
+realServer.listen(port, () => {
   console.log(`Server Is Running ${port}`);
 });
