@@ -1,7 +1,23 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./TableDashboard.module.css";
 
 function TableDashboard() {
+  // L1 => States & Global Data
+  const [users, setUsers] = useState([
+    { id: 1, first: "Ezz Aldin", last: "Mohamed", handle: "@ezz" },
+    { id: 2, first: "sara", last: "Mohamed", handle: "@sara" },
+    { id: 3, first: "Mohamed", last: "salah", handle: "@mohamed" },
+  ]);
+  // L2 => Effects API Call
+  // L3 => Handler
+  const onDeleteHandler = (userId) => {
+    // Get Id & Create New Arr
+    const newUsersArr = users.filter((user) => user.id !== userId);
+    // Set New State
+    setUsers(newUsersArr);
+  };
+  // L4 => JSX
   return (
     <div className="container py-4">
       <div className="d-flex align-items-center justify-content-between mb-3">
@@ -23,24 +39,22 @@ function TableDashboard() {
           </thead>
 
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>John</td>
-              <td>Doe</td>
-              <td>@social</td>
-            </tr>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.first}</td>
+                <td>{user.last}</td>
+                <td>{user.handle}</td>
+                <td>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => onDeleteHandler(user.id)}
+                  >
+                    Delete User
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
