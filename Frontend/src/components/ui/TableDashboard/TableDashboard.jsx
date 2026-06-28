@@ -5,17 +5,20 @@ import styles from "./TableDashboard.module.css";
 function TableDashboard() {
   // L1 => States & Global Data
   const [users, setUsers] = useState([
-    { id: 1, first: "Ezz Aldin", last: "Mohamed", handle: "@ezz" },
-    { id: 2, first: "sara", last: "Mohamed", handle: "@sara" },
-    { id: 3, first: "Mohamed", last: "salah", handle: "@mohamed" },
+    { id: 1, first: "Ezz Aldin", last: "mohamed", handle: "@ezz" },
+    { id: 2, first: "sara", last: "mohamed", handle: "@sara" },
+    { id: 3, first: "Ahmed", last: "mohamed", handle: "@ahmed" },
   ]);
-  // L2 => Effects API Call
+  // L2 => API Call
   // L3 => Handler
-  const onDeleteHandler = (userId) => {
-    // Get Id & Create New Arr
-    const newUsersArr = users.filter((user) => user.id !== userId);
-    // Set New State
-    setUsers(newUsersArr);
+  const deleteUserHandler = (userId) => {
+    // Get User Id & Filter
+    const newArrUsers = users.filter((user) => user.id !== userId);
+    setUsers(newArrUsers);
+  };
+
+  () => {
+    return 1 + 2;
   };
   // L4 => JSX
   return (
@@ -47,10 +50,10 @@ function TableDashboard() {
                 <td>{user.handle}</td>
                 <td>
                   <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => onDeleteHandler(user.id)}
+                    className="btn btn-danger"
+                    onClick={() => deleteUserHandler(user.id)}
                   >
-                    Delete User
+                    Delete
                   </button>
                 </td>
               </tr>

@@ -4,11 +4,12 @@ import Logo from "../../../assets/logo.png";
 
 const Navbar = ({ adminName = "Super Admin", adminImg }) => {
   // Layer 1 => States & Global Data
-  const [notifCount, setNotifCount] = useState(15);
-  // Layer 2 => (Effects) API Call
+  const [notifiCount, setNotifiCount] = useState(25);
+  // Layer 2 => API Call
   // Layer 3 => Handler
-  const onIncNotifHandler = () => {
-    setNotifCount(notifCount + 1);
+  const onIncreaseNotification = () => {
+    // Get Initinal Value & Increase Value
+    setNotifiCount(notifiCount + 1);
   };
   // Layer 4 => JSX
   return (
@@ -23,11 +24,11 @@ const Navbar = ({ adminName = "Super Admin", adminImg }) => {
         <div className={styles.notifIcon}>
           <i className="fa-solid fa-bell"></i>
           <span className={`badge rounded-pill bg-info ${styles.badge}`}>
-            {notifCount}
+            {notifiCount}
           </span>
         </div>
-        <button className="btn btn-primary" onClick={onIncNotifHandler}>
-          Increase Notification
+        <button className="btn btn-primary" onClick={onIncreaseNotification}>
+          Increase Notification Count
         </button>
 
         <div className="d-flex align-items-center gap-2">
