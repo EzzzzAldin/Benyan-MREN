@@ -1,12 +1,27 @@
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import styles from "./FormDashboard.module.css";
 
 function FormDashboard() {
+  // L1 => States & Global Data
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm({
+    mode: "all",
+  });
+  // L2 => API Call
+  // L3 => Handler
+  // L4 => JSX
   return (
     <div className="container py-4">
       <div className={styles.formWrapper}>
         <h5 className="fw-semibold mb-4">Add New User</h5>
 
-        <form>
+        <form onSubmit={onSubmitHandler(data)}>
           <div className="row g-3">
             <div className="col-12 col-md-6">
               <label className="form-label">User Name</label>
@@ -16,6 +31,11 @@ function FormDashboard() {
             <div className="col-12 col-md-6">
               <label className="form-label">Email Address</label>
               <input type="email" className={`form-control ${styles.input}`} />
+            </div>
+
+            <div className="col-12 col-md-12">
+              <label className="form-label">Phone Number</label>
+              <input type="text" className={`form-control ${styles.input}`} />
             </div>
 
             <div className="col-12 col-md-6">
