@@ -4,11 +4,7 @@ import styles from "./TableDashboard.module.css";
 
 function TableDashboard() {
   // L1 => States & Global Data
-  const [users, setUsers] = useState([
-    { id: 1, first: "Ezz Aldin", last: "Mohamed", handle: "@ezz" },
-    { id: 2, first: "sara", last: "Mohamed", handle: "@sara" },
-    { id: 3, first: "Mohamed", last: "salah", handle: "@mohamed" },
-  ]);
+  const [users, setUsers] = useState([]);
   // L2 => Effects API Call
   // L3 => Handler
   const onDeleteHandler = (userId) => {
@@ -31,20 +27,21 @@ function TableDashboard() {
         <table className={`table mb-0 ${styles.table}`}>
           <thead>
             <tr>
-              <th>#</th>
-              <th>First</th>
-              <th>Last</th>
-              <th>Handle</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
           <tbody>
             {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.first}</td>
-                <td>{user.last}</td>
-                <td>{user.handle}</td>
+              <tr key={user._id}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.phoneNumber}</td>
+                <td>{user.isActive ? "Active" : "Inactive"}</td>
                 <td>
                   <button
                     className="btn btn-danger btn-sm"
