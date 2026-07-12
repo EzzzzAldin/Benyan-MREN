@@ -13,19 +13,44 @@ function FormDashboard() {
   } = useForm({
     mode: "all",
   });
+
+  const password = watch("password");
   // L2 => API Call
   // L3 => Handler
+  const onSubmitHandler = async (data) => {
+    try {
+      console.log(data);
+    } catch (error) {
+      console.error;
+    }
+  };
   // L4 => JSX
   return (
     <div className="container py-4">
       <div className={styles.formWrapper}>
         <h5 className="fw-semibold mb-4">Add New User</h5>
 
-        <form onSubmit={onSubmitHandler(data)}>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
           <div className="row g-3">
             <div className="col-12 col-md-6">
               <label className="form-label">User Name</label>
-              <input type="text" className={`form-control ${styles.input}`} />
+              <input
+                type="text"
+                {...register("username", {
+                  required: "Username Is Required",
+                  minLength: {
+                    value: 3,
+                    message: "Username Must Be More Than 3 Char",
+                  },
+                })}
+                className={`form-control ${styles.input} ${errors.username ? "is-invalid" : ""}`}
+              />
+
+              {errors.username && (
+                <div className="invalid-feedback">
+                  {errors.username.message}
+                </div>
+              )}
             </div>
 
             <div className="col-12 col-md-6">
