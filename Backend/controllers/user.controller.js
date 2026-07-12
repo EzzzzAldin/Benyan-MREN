@@ -34,8 +34,18 @@ const createUser = async (req, res) => {
   }
 };
 // Get All Users
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({
+      users,
+    });
+  } catch (error) {
+    res.status(500).json({ msg: "Internal Server Error" });
+  }
+};
 // Get UserById
 // Update User
 // Delete User
 // Export
-module.exports = createUser;
+module.exports = { createUser, getAllUsers };

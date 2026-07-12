@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./TableDashboard.module.css";
 
@@ -6,6 +7,20 @@ function TableDashboard() {
   // L1 => States & Global Data
   const [users, setUsers] = useState([]);
   // L2 => Effects API Call
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8000/api/dashboard/users/all",
+        );
+        setUsers(res.data.users);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
   // L3 => Handler
   const onDeleteHandler = (userId) => {
     // Get Id & Create New Arr
