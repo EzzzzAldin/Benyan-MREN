@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./TableDashboard.module.css";
 
 function TableDashboard() {
   // Layer 1 => (states & Global Data)
-  const [users, setUsers] = useState([
-    { id: 1, first: "Ezz Aldin", last: "Mohamed", handle: "@ezz" },
-    { id: 2, first: "Ahmed", last: "Mohamed", handle: "@ahmed" },
-    { id: 3, first: "sara", last: "Mohamed", handle: "@sara" },
-  ]);
+  const [users, setUsers] = useState([]);
   // layer 2 => (Effects) => Call Api
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8000/api/dashboard/users/all",
+        );
+        setUsers(res.data.users);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
   // Layer 3 => (Handler)
   const onDeleteUserHandler = (userId) => {
     // Get User Id & Delete User => Filter
@@ -31,20 +42,21 @@ function TableDashboard() {
         <table className={`table mb-0 ${styles.table}`}>
           <thead>
             <tr>
-              <th>#</th>
-              <th>First</th>
-              <th>Last</th>
-              <th>Handle</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
           <tbody>
             {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.first}</td>
-                <td>{user.last}</td>
-                <td>{user.handle}</td>
+              <tr key={user._id}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.phoneNumber}</td>
+                <td>{user.isActive ? "Active" : "Inactive"}</td>
                 <td>
                   <button
                     className="btn btn-danger btn-sm"
