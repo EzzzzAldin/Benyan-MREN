@@ -6,6 +6,5 @@ const router = express.Router();
 const { createUser, getAllUsers } = require("../controllers/user.controller");
 // Init Method Request
 router.post("/", createUser);
-router.get("/all", getAllUsers);
 // Export
 module.exports = router;
