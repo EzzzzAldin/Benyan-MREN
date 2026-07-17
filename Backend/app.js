@@ -3,12 +3,14 @@ require("dotenv").config();
 // express
 const express = require("express");
 const app = express();
+const cors = require("cors");
 // Create Node server
 const http = require("http");
 const appServer = http.createServer(app);
 
 const morgan = require("morgan");
 // middleware json
+app.use(cors());
 app.use(express.json());
 // connection DB
 // Simple Logger
