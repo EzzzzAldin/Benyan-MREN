@@ -1,10 +1,14 @@
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { login } from "../../../store/authSlice";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginDashboard.module.css";
 
 function LoginDashboard() {
   // L1 => State & Global Data
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -14,8 +18,18 @@ function LoginDashboard() {
 
   // L2 => Effects
   // L3 => Handler
-  const onSubmitHandler = (data) => {
-    console.log(data);
+  const onSubmitHandler = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/dashboard/login",
+        data,
+      );
+      const token = res.data.token;
+      dispatch(login(token));
+      navigate("/dashboard/home");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // L4 => JSX
