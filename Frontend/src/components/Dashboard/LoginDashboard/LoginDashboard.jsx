@@ -1,10 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styles from "./LoginDashboard.module.css";
 
 function LoginDashboard() {
   // L1 => State & Global Data
   const navigate = useNavigate();
+  const authState = useSelector((state) => state.auth);
+
+  console.log(authState);
 
   const {
     register,
