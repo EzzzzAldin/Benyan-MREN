@@ -6,9 +6,9 @@ import Logo from "../../../assets/logo.png";
 const Navbar = ({ adminName = "Super Admin", adminImg }) => {
   // Layer 1 => States & Global Data
   const [notifiCount, setNotifiCount] = useState(25);
+  const state = useSelector((state) => state);
+  console.log(state);
 
-  const stateAuth = useSelector((state) => state.auth);
-  console.log(stateAuth);
   // Layer 2 => API Call
   // Layer 3 => Handler
   const onIncreaseNotification = () => {
